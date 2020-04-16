@@ -33,17 +33,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1.</td>
-                  <td>Ana</td>
-                  <td>contato@gmail.com</td>
-                  <td>Mussdm Ipsum, cacilds vidis lsdabertis. Manduma pindureta quium dia nsds psd. Viva Forevis
-                    aptent taciti sociosqu ad
-                    litdsa torquent. In elementis mé pra qusd d amistosis quis leo. Admodum accumsan disputationi eu
-                    sit. Vide electram sadipscing
-                    et per.</td>
+                <% data.forEach(function(row){%>
+                <tr data-row="<%= JSON.stringify(row) %>"> 
+                  <td><%= row.id %></td>
+                  <td><%= row.name %></td>
+                  <td><%= row.email %></td>
+                  <td><%= row.message %></td>
                   <td><button type="button" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i> Excluir</button></td>
                 </tr>
+                <% }); %>
               </tbody>
             </table>
           </div>
@@ -56,3 +54,15 @@
   <!-- /.content-wrapper -->
 
  <%- include("inc/footer") -%>
+
+ <script src="/js/formsave.js"></script>
+ <script src="/js/grid.js"></script>
+ <script>
+
+  new Grid({
+    deleteUrl:'/admin/contacts/${data.id}',
+    deleteMsg:'Deseja realmente excluir o contato de ${data.name}?'
+  });
+
+
+ </script>
